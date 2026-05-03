@@ -262,7 +262,7 @@ main#main > .section:last-of-type:not(.cta) {
 }
 
 /* Навигациялық сілтемелер мен тема/тіл/қолжетімділік түймелерінің арасы */
-@media (min-width: 1025px) {
+@media (min-width: 1201px) {
   .header-actions {
     margin-inline-start: 24px;
     padding-inline-start: 8px;
@@ -5062,15 +5062,19 @@ html[data-theme="dark"] .toast.toast--global.show {
   }
 }
 
-/* Тақтада мәзір + әрекеттер сығылмай қабаттаспауы үшін бұрын мобильді үлгі */
-@media (max-width: 1024px) {
+/* Мобильді мәзір: overflow-y:hidden выпадающий список кесіп тастайды; меню .open астында көрінуі керек */
+@media (max-width: 1200px) {
+  .site-header {
+    overflow: visible;
+  }
+
   .header-inner {
     min-height: 64px;
     flex-wrap: nowrap;
     gap: 14px;
     align-items: center;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -5104,26 +5108,32 @@ html[data-theme="dark"] .toast.toast--global.show {
     left: 50%;
     right: auto;
     top: calc(100% + 10px);
+    display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: stretch;
     padding: 10px;
     gap: 4px;
     width: min(360px, calc(100vw - 28px));
+    max-width: calc(100vw - 24px);
     border-radius: 18px;
     border: 1px solid rgba(12, 18, 34, 0.12);
     background: rgba(255, 255, 255, 0.92);
     box-shadow: var(--shadow);
     transform: translate(-50%, -6px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 160ms ease, transform 160ms ease;
-    z-index: 55;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
+    z-index: 100;
   }
 
   .nav-menu.open {
     opacity: 1;
+    visibility: visible;
     transform: translate(-50%, 0);
     pointer-events: auto;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 0s;
   }
 
   .nav-link {
