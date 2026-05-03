@@ -1,18 +1,18 @@
-# GeoOnline — демо платформы
+# GeoOnline demo
 
-Краткий full-stack прототип EdTech-сайта (ҰБТ / география): многостраничный фронт, REST API, MongoDB, личный кабинет и админка.
+A compact full stack EdTech prototype for UNT style prep with a geography focus: multi page frontend, REST API, MongoDB, student dashboard, and admin UI.
 
-## Стек
+## Stack
 
-- **Фронт:** HTML, CSS, JavaScript (`script.js`), опционально виджет **React + Vite** в `react-widget/` (сборка в `assets/geo-react.js`).
-- **Бэкенд:** Node.js, Express, Mongoose, JWT, bcrypt.
-- **Тесты API-утилит:** `npm test` в каталоге `server/`.
+- **Frontend:** HTML, CSS, JavaScript in `script.js`. Optional **React + Vite** widget in `react-widget/` (build outputs to `assets/geo-react.js`).
+- **Backend:** Node.js, Express, Mongoose, JWT, bcrypt.
+- **Tests:** run `npm test` inside `server/` for API utility unit tests.
 
-## Запуск API и сайта
+## Run the API and site
 
-1. Установить [MongoDB](https://www.mongodb.com/) локально или использовать облачный URI.
-2. В каталоге `server/` скопировать `server/.env.example` → `server/.env` и заполнить `MONGODB_URI`, `JWT_SECRET`, при необходимости `PORT` и `CORS_ORIGIN`.
-3. Команды:
+1. Install [MongoDB](https://www.mongodb.com/) locally or use a cloud URI.
+2. In `server/`, copy `server/.env.example` to `server/.env` and set `MONGODB_URI`, `JWT_SECRET`, and if needed `PORT` and `CORS_ORIGIN`.
+3. Commands:
 
 ```bash
 cd server
@@ -20,14 +20,14 @@ npm install
 npm start
 ```
 
-Сервер отдаёт статику проекта и API: откройте в браузере указанный порт (по умолчанию `http://localhost:3000/`).
+The server serves the project static files and the API. Open the printed port in your browser (default `http://localhost:3000/`).
 
-## Полезное
+## Extras
 
-- Админка: `/admin.html` (нужна роль администратора в БД).
-- Сиды: `npm run seed:admin`, `npm run seed:promos` (из `server/`).
-- Отчёт по тестам: `npm run test:report` → `server/reports/TEST_REPORT.md`.
+- Admin UI: `/admin.html` (admin role required in the database).
+- Seeds: `npm run seed:admin` and `npm run seed:promos` from `server/`.
+- Test report: `npm run test:report` writes `server/reports/TEST_REPORT.md`.
 
-## Репозиторий
+## Repo
 
-Публичная копия: [Geonline-Demo-Front](https://github.com/kozqarashigi/Geonline-Demo-Front). Файл `.env` в Git не коммитится.
+Public mirror: [Geonline-Demo-Front](https://github.com/kozqarashigi/Geonline-Demo-Front). The real `.env` file is not committed.
