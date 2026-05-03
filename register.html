@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GeoOnline: тіркелу." />
+    <title>GeoOnline: Тіркелу</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/icon.jpg" sizes="64x64" />
+    <link rel="apple-touch-icon" href="assets/icon.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Контентке өту</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html#top" aria-label="GeoOnline басты бет" data-i18n-attr="aria-label:brandAria">
+          <img class="brand-logo" src="assets/logo.png" alt="GeoOnline" />
+          <span class="brand-text">GeoOnline</span>
+        </a>
+
+        <nav class="nav" aria-label="Негізгі мәзір" data-i18n-attr="aria-label:navAria">
+          <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+            <span class="sr-only" data-i18n="menu">Мәзір</span>
+          </button>
+
+          <ul class="nav-menu" id="navMenu">
+            <li><a class="nav-link" href="index.html#courses" data-i18n="nav.courses">Курстар</a></li>
+            <li><a class="nav-link" href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a></li>
+            <li><a class="nav-link" href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a></li>
+            <li><a class="nav-link" href="index.html#mobile" data-i18n="nav.mobile">Мобилді қосымша</a></li>
+            <li><a class="nav-link" href="materials.html" data-i18n="nav.materials">Материалдар</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" aria-label="Хабарламалар" data-i18n-attr="aria-label:notifsAria">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 1 0-14 0v5l-2 2v1h18v-1l-2-2Z"
+              />
+            </svg>
+          </button>
+
+          <div class="a11y-dd" data-i18n-attr="aria-label:a11yDdAria">
+            <button class="icon-btn" id="a11yToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="a11yMenu" data-i18n-attr="aria-label:a11yBtnAria">
+              <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"
+                />
+              </svg>
+            </button>
+            <div class="a11y-menu" id="a11yMenu" role="menu" data-i18n-attr="aria-label:a11yMenuAria">
+              <div class="a11y-menu-head" data-i18n="a11yPanel.menuTitle">Көрініс және қолжетімділік</div>
+              <button class="a11y-theme-btn" type="button" id="themeToggle" data-i18n-attr="aria-label:themeAria">
+                <span class="a11y-theme-ic" aria-hidden="true">
+                  <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M21.64 13a1 1 0 0 0-1.05-.14A8.05 8.05 0 0 1 17.22 13.5 8.15 8.15 0 0 1 8.5 4.78a8.59 8.59 0 0 1 .56-3.3 1 1 0 0 0-1.2-1.3A10.14 10.14 0 0 0 2 10.26 10.15 10.15 0 0 0 12.27 22a10.28 10.28 0 0 0 9.28-7.37 1 1 0 0 0 .09-.63Z"
+                    />
+                  </svg>
+                </span>
+                <span data-i18n="a11yPanel.themeAction">Ауыстыру</span>
+              </button>
+              <div class="a11y-menu-section">
+                <div class="a11y-label" data-i18n="a11yPanel.font">Мәтін өлшемі</div>
+                <div class="a11y-font-row" role="group" data-i18n-attr="aria-label:a11yFontGroupAria">
+                  <button class="a11y-pill" type="button" id="a11yFontDown" data-i18n-attr="aria-label:a11yFontDecAria">A−</button>
+                  <button class="a11y-pill" type="button" id="a11yFontReset" data-i18n-attr="aria-label:a11yFontResetAria">A</button>
+                  <button class="a11y-pill" type="button" id="a11yFontUp" data-i18n-attr="aria-label:a11yFontIncAria">A+</button>
+                </div>
+              </div>
+              <div class="a11y-toggle-row" role="group" data-i18n-attr="aria-label:a11yToggleGroupAria">
+                <button class="a11y-chip" type="button" id="a11yContrastBtn" aria-pressed="false">
+                  <span data-i18n="a11yPanel.contrastShort">Контраст</span>
+                </button>
+                <button class="a11y-chip" type="button" id="a11yCvdBtn" aria-pressed="false">
+                  <span data-i18n="a11yPanel.cvdShort">Түстер</span>
+                </button>
+              </div>
+              <button class="a11y-item a11y-item--muted" type="button" role="menuitem" id="a11yResetBtn">
+                <span data-i18n="a11yPanel.reset">Барлығын қалпына келтіру</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lang-dd" data-i18n-attr="aria-label:langAria">
+            <button class="lang-btn" id="langToggle" type="button" aria-haspopup="menu" aria-expanded="false">
+              <span class="lang-btn-flag" id="langFlag" aria-hidden="true"></span>
+              <span class="lang-btn-text" id="langText">Қазақша</span>
+              <span class="lang-btn-caret" aria-hidden="true"></span>
+            </button>
+            <div class="lang-menu" id="langMenu" role="menu" aria-label="Тіл" data-i18n-attr="aria-label:langMenuAria">
+              <button class="lang-item" type="button" role="menuitem" data-lang="kk">
+                <span class="lang-item-flag" data-flag="kk" aria-hidden="true"></span>
+                <span class="lang-item-label">Қазақша</span>
+              </button>
+              <button class="lang-item" type="button" role="menuitem" data-lang="ru">
+                <span class="lang-item-flag" data-flag="ru" aria-hidden="true"></span>
+                <span class="lang-item-label">Орысша</span>
+              </button>
+            </div>
+          </div>
+
+          <a class="btn btn-ghost" href="login.html" data-i18n="header.login">Кіру</a>
+          <a class="btn btn-primary" href="register.html" data-i18n="header.register">Тіркелу</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section section-soft page-head section-tight-top">
+        <div class="container">
+          <div class="section-head page-head-inner">
+            <p class="auth-page-eyebrow" data-i18n="pages.register.authTag">Тіркелу</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight-top">
+        <div class="container auth-wrap">
+          <div class="card auth-card auth-card--flow auth-card--register-simple">
+            <form class="form form--padded" id="registerForm" novalidate>
+              <ol class="auth-steps register-steps" role="list" aria-label="Тіркелу қадамдары" data-i18n-attr="aria-label:pages.register.stepsAria">
+                <li class="auth-step is-active" data-reg-step="1">
+                  <span class="auth-step-num" aria-hidden="true">1</span>
+                  <span class="auth-step-label" data-i18n="pages.register.stepPhone">Телефон</span>
+                </li>
+                <li class="auth-step" data-reg-step="2">
+                  <span class="auth-step-num" aria-hidden="true">2</span>
+                  <span class="auth-step-label" data-i18n="pages.register.stepVerify">Растау</span>
+                </li>
+                <li class="auth-step" data-reg-step="3">
+                  <span class="auth-step-num" aria-hidden="true">3</span>
+                  <span class="auth-step-label" data-i18n="pages.register.stepDetails">Мәліметтер</span>
+                </li>
+              </ol>
+              <div class="register-panels-host">
+                <div id="regPanel1" class="register-panel">
+                  <h1 class="auth-flow-title" data-i18n="pages.register.stepPhone">Телефон</h1>
+
+                  <label class="field">
+                    <span class="field-label" data-i18n="pages.register.phone">Телефон</span>
+                    <div class="phone-field">
+                      <span class="phone-prefix" aria-hidden="true">+7</span>
+                      <input
+                        class="input phone-field-input"
+                        id="regPhone"
+                        name="phone"
+                        type="tel"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        placeholder="___ ___ __ __"
+                        maxlength="14"
+                        required
+                      />
+                    </div>
+                  </label>
+
+                  <label class="auth-checkbox">
+                    <input type="checkbox" id="regAgree" name="agree" required />
+                    <span>
+                      <span data-i18n="pages.register.agreePrefix">Мен келісемін</span>
+                      <button type="button" class="btn-link-inline" id="regAgreeOpen" data-i18n="pages.register.agreeLink">
+                        пайдаланушы келісімімен
+                      </button>
+                    </span>
+                  </label>
+
+                  <button type="button" class="btn btn-primary btn-block" id="registerNext1" data-i18n="pages.register.continue">
+                    Әрі қарай
+                  </button>
+                </div>
+
+                <div id="regPanel2" class="register-panel" hidden>
+                  <h1 class="auth-flow-title" data-i18n="pages.register.stepVerify">Растау</h1>
+                  <p class="reg-demo-code-hint muted" id="regDemoCodeHint" hidden></p>
+                  <label class="field">
+                    <span class="field-label" data-i18n="pages.register.otpLabel">Растау коды</span>
+                    <input class="input mono-input" id="regOtp" name="otp" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" />
+                  </label>
+                  <div class="register-panel-actions">
+                    <button type="button" class="btn btn-ghost register-panel-actions-back" id="registerBack2" data-i18n="pages.register.back">
+                      Артқа
+                    </button>
+                    <button type="button" class="btn btn-primary register-panel-actions-next" id="registerNext2" data-i18n="pages.register.continue">
+                      Әрі қарай
+                    </button>
+                  </div>
+                </div>
+
+                <div id="regPanel3" class="register-panel" hidden>
+                  <h1 class="auth-flow-title" data-i18n="pages.register.stepDetails">Мәліметтер</h1>
+                  <label class="field">
+                    <span class="field-label" data-i18n="pages.register.name">Аты-жөні</span>
+                    <input class="input" id="regName" name="name" type="text" autocomplete="name" required />
+                  </label>
+                  <label class="field">
+                    <span class="field-label" data-i18n="pages.register.pass">Пароль</span>
+                    <input class="input" name="password" type="password" autocomplete="new-password" required />
+                  </label>
+                  <div class="register-panel-actions">
+                    <button type="button" class="btn btn-ghost register-panel-actions-back" id="registerBack3" data-i18n="pages.register.back">
+                      Артқа
+                    </button>
+                    <button type="button" class="btn btn-primary register-panel-actions-next" id="registerSubmit" data-i18n="pages.register.submit">
+                      Тіркелу
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <p class="auth-switch auth-switch--register-foot">
+                <span data-i18n="pages.register.hasAccount">Аккаунт бар ма?</span>
+                <a href="login.html" data-i18n="pages.register.toLogin">Кіру</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast toast--global" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="agreementModal" class="legal-modal" hidden aria-hidden="true">
+      <div class="legal-modal__backdrop" data-agreement-close tabindex="-1" aria-hidden="true"></div>
+      <div
+        class="legal-modal__panel card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="agreementModalTitle"
+      >
+        <button type="button" class="legal-modal__close" id="agreementModalClose" data-agreement-close>
+          <span aria-hidden="true">×</span>
+          <span class="sr-only" data-i18n="pages.register.agreementClose">Жабу</span>
+        </button>
+        <h2 class="legal-modal__title" id="agreementModalTitle" data-i18n="pages.register.agreementModalTitle">
+          Пайдаланушы келісімі
+        </h2>
+        <iframe class="legal-modal__frame" id="agreementIframe" title="" src="agreement.html?embed=1"></iframe>
+        <p class="legal-modal__footer muted">
+          <a href="agreement.html" target="_blank" rel="noopener noreferrer" data-i18n="pages.register.agreementOpenFull"
+            >Толық бетте ашу</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text footer-title">GeoOnline</div>
+          <p class="footer-desc" data-i18n="footer.desc">
+            ҰБТ-ға дайындықтың заманауи және ең тиімді тәсілі. Бізбен бірге болашағыңа қадам жаса.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.platform">Платформа</div>
+          <a href="index.html#courses" data-i18n="nav.courses">Курстар</a>
+          <a href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a>
+          <a href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a>
+          <a href="materials.html" data-i18n="nav.materials">Материалдар</a>
+          <a href="training.html#simulator" data-i18n="footer.rating">Рейтинг</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.company">Компания</div>
+          <a href="about.html" data-i18n="footer.about">Біз туралы</a>
+          <a href="contacts.html" data-i18n="footer.contacts">Байланыс</a>
+          <a href="news.html" data-i18n="footer.news">Жаңалықтар</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.help">Көмек</div>
+          <a href="faq.html" data-i18n="footer.faq">Сұрақ-жауап (FAQ)</a>
+          <a href="contacts.html#support" data-i18n="footer.support">Қолдау көрсету</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Құпиялылық саясаты</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span data-i18n="footer.copyright">© GeoOnline 2026. Барлық құқықтар қорғалған.</span>
+        <a class="back-to-top" href="#top" data-i18n="footer.top">↑ Жоғары</a>
+      </div>
+    </footer>
+
+    <script src="assets/geo-api-config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

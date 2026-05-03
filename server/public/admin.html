@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoOnline әкімші панелі</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #22c55e;
+        --err: #f87171;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 24px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.35rem;
+      }
+      .admin-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .admin-lang {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .admin-lang button {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+      .admin-lang button.active {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+      .card {
+        max-width: 960px;
+        background: var(--card);
+        border-radius: 16px;
+        padding: 22px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(148, 163, 184, 0.15);
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--muted);
+      }
+      input,
+      select {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: #0f172a;
+        color: var(--text);
+        margin-bottom: 14px;
+        font-size: 14px;
+      }
+      table input,
+      table select {
+        margin-bottom: 0;
+        padding: 8px 10px;
+      }
+      button {
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--accent);
+        color: #052e16;
+        font-size: 13px;
+      }
+      button.ghost {
+        background: transparent;
+        color: var(--muted);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+      }
+      button.danger {
+        background: rgba(248, 113, 113, 0.2);
+        color: #fecaca;
+        border: 1px solid rgba(248, 113, 113, 0.35);
+      }
+      .err {
+        color: var(--err);
+        font-size: 14px;
+        margin-top: 8px;
+      }
+      .ok {
+        color: var(--accent);
+        font-size: 13px;
+        margin-top: 8px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px 8px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        vertical-align: middle;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 700;
+      }
+      td.actions {
+        white-space: nowrap;
+      }
+      td.actions button {
+        margin-right: 6px;
+        margin-bottom: 4px;
+      }
+      .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .badge-admin {
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--accent);
+      }
+      .badge-user {
+        background: rgba(148, 163, 184, 0.15);
+        color: var(--muted);
+      }
+      .row-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+      .admin-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .admin-stat {
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        border-radius: 12px;
+        padding: 12px 14px;
+      }
+      .admin-stat-value {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--text);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+      .admin-stat-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        margin-top: 6px;
+        line-height: 1.35;
+      }
+      .stats-headline {
+        font-size: 13px;
+        font-weight: 650;
+        color: var(--muted);
+        flex: 1 1 180px;
+      }
+      .ua-cell {
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+      @media (prefers-contrast: more) {
+        .card {
+          border-width: 2px;
+        }
+        button {
+          outline: 2px solid transparent;
+        }
+        button:focus-visible {
+          outline: 3px solid var(--accent);
+          outline-offset: 2px;
+        }
+      }
+      @media (forced-colors: active) {
+        button {
+          forced-color-adjust: none;
+          border: 1px solid ButtonText;
+        }
+        a {
+          text-decoration: underline;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-top">
+      <h1 data-adm="pageTitle">Әкімші панелі</h1>
+      <div class="admin-lang" role="group" aria-label="Тіл">
+        <button type="button" class="ghost" id="admLangKk" data-set-lang="kk">Қазақша</button>
+        <button type="button" class="ghost" id="admLangRu" data-set-lang="ru">Русский</button>
+      </div>
+    </div>
+    <p class="sub" data-adm="pageSub"></p>
+
+    <div id="loginCard" class="card">
+      <label data-adm="phoneLabel"></label>
+      <input id="phone" type="text" autocomplete="tel" />
+      <label data-adm="passwordLabel"></label>
+      <input id="password" type="password" autocomplete="current-password" />
+      <button type="button" id="btnLogin" data-adm="btnLogin"></button>
+      <p class="sub" id="loginHint" style="margin-top: 12px; font-size: 12px; line-height: 1.45"></p>
+      <div id="loginErr" class="err" hidden></div>
+    </div>
+
+    <div id="dash" hidden>
+      <div class="card">
+        <div class="row-actions">
+          <span id="statsHeadline" class="stats-headline"></span>
+          <button type="button" class="ghost" id="btnLogout" data-adm="btnLogout"></button>
+          <button type="button" id="btnRefresh" data-adm="btnRefresh"></button>
+        </div>
+        <div class="admin-stat-grid" id="adminStatGrid" aria-label=""></div>
+        <div id="saveMsg" class="ok" hidden></div>
+      </div>
+      <div class="card">
+        <h2 style="margin: 0 0 12px; font-size: 1.1rem" data-adm="logsTitle"></h2>
+        <p style="margin: 0 0 14px; color: var(--muted); font-size: 13px" data-adm="logsSub"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-adm="thLogTime"></th>
+                <th data-adm="thLogRole"></th>
+                <th data-adm="thLogPhone"></th>
+                <th data-adm="thLogIp"></th>
+                <th data-adm="thLogUa"></th>
+              </tr>
+            </thead>
+            <tbody id="logTbody"></tbody>
+          </table>
+        </div>
+        <div id="logLoadErr" class="err" hidden></div>
+      </div>
+      <div class="card">
+        <h2 style="margin: 0 0 12px; font-size: 1.1rem" data-adm="usersTitle"></h2>
+        <p id="usersSubLine" style="margin: 0 0 14px; color: var(--muted); font-size: 13px" data-adm="usersSub"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-adm="thPhone"></th>
+                <th data-adm="thName"></th>
+                <th data-adm="thRole"></th>
+                <th data-adm="thCreated"></th>
+                <th data-adm="thActions"></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div id="loadErr" class="err" hidden></div>
+      </div>
+
+      <div class="card">
+        <h2 style="margin: 0 0 12px; font-size: 1.1rem" data-adm="promosTitle"></h2>
+        <p style="margin: 0 0 14px; color: var(--muted); font-size: 13px" data-adm="promosSub"></p>
+        <div id="promoEditor" style="display: grid; gap: 10px; max-width: 520px">
+          <label data-adm="promoCodeLabel"></label>
+          <input id="promoCode" type="text" autocomplete="off" />
+          <label data-adm="promoLabelLabel"></label>
+          <input id="promoLabel" type="text" />
+          <label data-adm="promoMaxLabel"></label>
+          <input id="promoMax" type="number" min="1" />
+          <label data-adm="promoExpLabel"></label>
+          <input id="promoExp" type="text" />
+          <button type="button" id="btnPromoCreate" data-adm="btnPromoCreate"></button>
+        </div>
+        <p id="promoErr" class="err" hidden style="margin-top: 12px"></p>
+        <p id="promoOk" class="ok" hidden style="margin-top: 12px"></p>
+        <div class="table-wrap" style="margin-top: 18px">
+          <table>
+            <thead>
+              <tr>
+                <th data-adm="thPromoCode"></th>
+                <th data-adm="thPromoLabel"></th>
+                <th data-adm="thPromoUses"></th>
+                <th data-adm="thPromoLimit"></th>
+                <th data-adm="thPromoActive"></th>
+                <th data-adm="thPromoActions"></th>
+              </tr>
+            </thead>
+            <tbody id="promoTbody"></tbody>
+          </table>
+        </div>
+        <div id="promoLoadErr" class="err" hidden></div>
+      </div>
+    </div>
+
+    <script>
+      const tokenKey = "geo_token";
+      const LANG_KEY = "geo_lang";
+      let staffReadOnly = false;
+
+      const STR = {
+        kk: {
+          docTitle: "GeoOnline — әкімші панелі",
+          pageTitle: "Әкімші панелі",
+          pageSub:
+            "Пайдаланушылар мен промокодтар: әкімші толық басқарады; мұғалім тек қарайды (өзгерту/жою жоқ). Кіру — admin немесе teacher рөлі.",
+          phoneLabel: "Телефон (+7…)",
+          phonePh: "+7 700 123 45 67 немесе 700 123 45 67",
+          passwordLabel: "Құпия сөз",
+          btnLogin: "Кіру",
+          loginHint:
+            'Панельді API іске қосылған <strong>сол сервердің</strong> мекенжайы бойынша ашыңыз (мысалы <code>http://127.0.0.1:3001/admin.html</code>). Әкімшіні бір рет құрыңыз: <code>server</code> қалтасында <code>npm run seed:admin</code> (нөмір мен пароль — <code>.env</code> ішінен).',
+          btnLogout: "Шығу",
+          btnRefresh: "Тізімді жаңарту",
+          usersTitle: "Пайдаланушылар",
+          usersSub:
+            "Атын немесе рөлін өзгертіп «Сақтау» басыңыз. Өз аккаунтыңызды және соңғы әкімшіні жоюға болмайды.",
+          usersSubRead: "Мұғалім режимі: тізімді тек қарауға болады; рөл мен жою әкімшіде.",
+          thPhone: "Телефон",
+          thName: "Аты",
+          thRole: "Рөлі",
+          thCreated: "Құрылған",
+          thActions: "Әрекеттер",
+          thReadOnly: "Көрініс",
+          promosTitle: "Промокодтар",
+          promosSub:
+            "Код жасаңыз (мысалы <strong>GEONLINE2021</strong>). Оқушы оны жеке кабинетте енгізеді. Бос лимит = активация шегі жоқ.",
+          promosSubRead: "Промокодтар тізімін қарау. Жасау/өзгерту тек әкімшіге.",
+          promoCodeLabel: "Код",
+          promoCodePh: "GEONLINE2021",
+          promoLabelLabel: "Сипаттама (оқушы не алады)",
+          promoLabelPh: "Бастапқы бонус",
+          promoMaxLabel: "Макс. активация (бос = шексіз)",
+          promoMaxPh: "міндетті емес",
+          promoExpLabel: "Аяқталуы (міндетті емес, күн)",
+          promoExpPh: "2027-12-31 немесе бос",
+          btnPromoCreate: "Промокод құру",
+          thPromoCode: "Код",
+          thPromoLabel: "Сипаттама",
+          thPromoUses: "Қолданылды",
+          thPromoLimit: "Лимит",
+          thPromoActive: "Белсенді",
+          thPromoActions: "Әрекеттер",
+          roleUser: "Оқушы",
+          roleTeacher: "Мұғалім",
+          roleAdmin: "Әкімші",
+          btnSave: "Сақтау",
+          btnDelete: "Жою",
+          yes: "иә",
+          no: "жоқ",
+          toggleOn: "Қосу",
+          toggleOff: "Сөндіру",
+          flashSaved: "Сақталды",
+          flashDeleted: "Жойылды",
+          errLoadUsers: "Жүктеу қатесі",
+          errLoadPromos: "Промокодтарды жүктеу қатесі",
+          errGeneric: "Қате",
+          phoneInvalid: "Нөмірді енгізіңіз: 10 цифр (700…) немесе 11, бастапқысы 7/8.",
+          needAdminRole: "Әкімші рөлі қажет",
+          needStaffRole: "Әкімші немесе мұғалім рөлі қажет",
+          loginErrGeneric: "Кіру қатесі",
+          promoCreated: "Промокод құрылды",
+          promoDefaultLabel: "Бонус",
+          statsAria: "Платформа статистикасы",
+          statsHeadline: (uptime) => "Сервер uptime: " + uptime,
+          statTotal: "Барлығы тіркелген",
+          statStudents: "Оқушылар (user)",
+          statTeachers: "Мұғалімдер (teacher)",
+          statAdmins: "Әкімшілер",
+          statNew7: "Жаңа тіркелу (7 күн)",
+          statNew30: "Жаңа тіркелу (30 күн)",
+          statLogins7: "Кірулер (7 күн)",
+          statPromoTotal: "Промокодтар",
+          statPromoActive: "Белсенді промо",
+          statPromoUses: "Промо активациялары",
+          logsTitle: "Кіру журналы",
+          logsSub:
+            "Сәтті кірулер (телефон + құпия сөз). Нөмірдің соңғы екі ғана цифры көрсетіледі. Жазбалар жаңа сервер нұсқасынан жиналады.",
+          thLogTime: "Уақыт",
+          thLogRole: "Рөл",
+          thLogPhone: "Нөмір (жасырын)",
+          thLogIp: "IP",
+          thLogUa: "Шолғыш",
+          confirmDelUser: (id) => "Пайдаланушыны жою: " + id + "?",
+          confirmDelPromo: () => "Промокодты жою керек пе?",
+        },
+        ru: {
+          docTitle: "GeoOnline — админ-панель",
+          pageTitle: "Админ-панель",
+          pageSub:
+            "Пользователи и промокоды: админ управляет полностью; преподаватель только просматривает. Вход — роль admin или teacher.",
+          phoneLabel: "Телефон (+7…)",
+          phonePh: "+7 700 123 45 67 или 700 123 45 67",
+          passwordLabel: "Пароль",
+          btnLogin: "Войти",
+          loginHint:
+            'Откройте панель по адресу <strong>того же сервера</strong>, где запущен API (например <code>http://127.0.0.1:3001/admin.html</code>). Админа создайте один раз: в папке <code>server</code> выполните <code>npm run seed:admin</code> (номер и пароль — из <code>.env</code>).',
+          btnLogout: "Выйти",
+          btnRefresh: "Обновить список",
+          usersTitle: "Пользователи",
+          usersSub:
+            "Измените имя или роль и нажмите «Сохранить». Удаление недоступно для собственной учётной записи и для последнего администратора.",
+          usersSubRead: "Режим преподавателя: только просмотр списка; роли и удаление — у администратора.",
+          thPhone: "Телефон",
+          thName: "Имя",
+          thRole: "Роль",
+          thCreated: "Создан",
+          thActions: "Действия",
+          thReadOnly: "Просмотр",
+          promosTitle: "Промокоды",
+          promosSub:
+            "Создайте код (например <strong>GEONLINE2021</strong>). Ученик вводит его в личном кабинете. Пустой лимит = без ограничения активаций.",
+          promosSubRead: "Просмотр списка промокодов. Создание/изменение — только админ.",
+          promoCodeLabel: "Код",
+          promoCodePh: "GEONLINE2021",
+          promoLabelLabel: "Подпись (что получает ученик)",
+          promoLabelPh: "Стартовый бонус",
+          promoMaxLabel: "Макс. активаций (пусто = без лимита)",
+          promoMaxPh: "необязательно",
+          promoExpLabel: "Действует до (необязательно, ISO дата)",
+          promoExpPh: "2027-12-31 или пусто",
+          btnPromoCreate: "Создать промокод",
+          thPromoCode: "Код",
+          thPromoLabel: "Подпись",
+          thPromoUses: "Использовано",
+          thPromoLimit: "Лимит",
+          thPromoActive: "Активен",
+          thPromoActions: "Действия",
+          roleUser: "Ученик",
+          roleTeacher: "Преподаватель",
+          roleAdmin: "Админ",
+          btnSave: "Сохранить",
+          btnDelete: "Удалить",
+          yes: "да",
+          no: "нет",
+          toggleOn: "Вкл",
+          toggleOff: "Выкл",
+          flashSaved: "Сохранено",
+          flashDeleted: "Удалено",
+          errLoadUsers: "Ошибка загрузки",
+          errLoadPromos: "Ошибка загрузки промокодов",
+          errGeneric: "Ошибка",
+          phoneInvalid: "Введите номер: 10 цифр (700…) или 11 с 7/8 в начале.",
+          needAdminRole: "Нужна роль администратора",
+          needStaffRole: "Нужна роль администратора или преподавателя",
+          loginErrGeneric: "Ошибка входа",
+          promoCreated: "Промокод создан",
+          promoDefaultLabel: "Бонус",
+          statsAria: "Сводная статистика",
+          statsHeadline: (uptime) => "Аптайм сервера: " + uptime,
+          statTotal: "Всего зарегистрировано",
+          statStudents: "Ученики (user)",
+          statTeachers: "Преподаватели (teacher)",
+          statAdmins: "Администраторы",
+          statNew7: "Новые регистрации (7 дн.)",
+          statNew30: "Новые регистрации (30 дн.)",
+          statLogins7: "Успешные входы (7 дн.)",
+          statPromoTotal: "Промокодов",
+          statPromoActive: "Активных промо",
+          statPromoUses: "Активаций промо",
+          logsTitle: "Журнал входов",
+          logsSub:
+            "Успешные входы по телефону и паролю (номер маскируется). Записи накапливаются после обновления сервера.",
+          thLogTime: "Время",
+          thLogRole: "Роль",
+          thLogPhone: "Номер (маска)",
+          thLogIp: "IP",
+          thLogUa: "Браузер",
+          confirmDelUser: (id) => "Удалить пользователя " + id + "?",
+          confirmDelPromo: () => "Удалить промокод?",
+        },
+      };
+
+      function localeTag() {
+        return readLang() === "kk" ? "kk-KZ" : "ru-RU";
+      }
+
+      function readLang() {
+        const raw = localStorage.getItem(LANG_KEY);
+        return raw === "ru" ? "ru" : "kk";
+      }
+
+      function setLang(next) {
+        localStorage.setItem(LANG_KEY, next === "ru" ? "ru" : "kk");
+        applyAdminLang();
+      }
+
+      function applyAdminLang() {
+        const lang = readLang();
+        document.documentElement.lang = lang;
+        const pack = STR[lang];
+        document.title = pack.docTitle;
+        document.querySelectorAll("[data-adm]").forEach((el) => {
+          const k = el.getAttribute("data-adm");
+          const v = k ? pack[k] : "";
+          if (!k || v === undefined || typeof v === "function") return;
+          el.textContent = v;
+        });
+        const hint = document.getElementById("loginHint");
+        if (hint) hint.innerHTML = pack.loginHint;
+        document.getElementById("phone").placeholder = pack.phonePh;
+        document.getElementById("promoCode").placeholder = pack.promoCodePh;
+        document.getElementById("promoLabel").placeholder = pack.promoLabelPh;
+        document.getElementById("promoMax").placeholder = pack.promoMaxPh;
+        document.getElementById("promoExp").placeholder = pack.promoExpPh;
+        document.getElementById("admLangKk").classList.toggle("active", lang === "kk");
+        document.getElementById("admLangRu").classList.toggle("active", lang === "ru");
+      }
+
+      document.getElementById("admLangKk").addEventListener("click", () => {
+        setLang("kk");
+        if (!document.getElementById("dash").hidden) {
+          syncStaffUi();
+          loadDash();
+          loadPromos();
+        }
+      });
+      document.getElementById("admLangRu").addEventListener("click", () => {
+        setLang("ru");
+        if (!document.getElementById("dash").hidden) {
+          syncStaffUi();
+          loadDash();
+          loadPromos();
+        }
+      });
+
+      applyAdminLang();
+
+      function apiBase() {
+        return "";
+      }
+
+      function normalizeAdminPhone(raw) {
+        const d = String(raw || "").replace(/\D/g, "");
+        if (d.length === 10) return "+7" + d;
+        if (d.length === 11 && (d[0] === "7" || d[0] === "8")) return "+7" + d.slice(1);
+        return "";
+      }
+
+      async function api(path, opts = {}) {
+        const url = apiBase() + path;
+        const headers = { ...(opts.headers || {}) };
+        if (opts.body && !headers["Content-Type"]) headers["Content-Type"] = "application/json";
+        const tok = localStorage.getItem(tokenKey);
+        if (tok) headers.Authorization = "Bearer " + tok;
+        const r = await fetch(url, { ...opts, headers });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(data.message || r.statusText);
+        return data;
+      }
+
+      function showLogin() {
+        document.getElementById("loginCard").hidden = false;
+        document.getElementById("dash").hidden = true;
+      }
+
+      function showDash() {
+        document.getElementById("loginCard").hidden = true;
+        document.getElementById("dash").hidden = false;
+      }
+
+      function flashMsg(text) {
+        const el = document.getElementById("saveMsg");
+        el.textContent = text;
+        el.hidden = false;
+        setTimeout(() => {
+          el.hidden = true;
+        }, 3200);
+      }
+
+      function roleLabelPack(pack, role) {
+        if (role === "admin") return pack.roleAdmin;
+        if (role === "teacher") return pack.roleTeacher;
+        return pack.roleUser;
+      }
+
+      function syncStaffUi() {
+        const ed = document.getElementById("promoEditor");
+        if (ed) ed.hidden = staffReadOnly;
+        const ps = document.querySelector("[data-adm='promosSub']");
+        if (ps) {
+          const lang = readLang();
+          const pack = STR[lang];
+          ps.textContent = staffReadOnly ? pack.promosSubRead : pack.promosSub;
+        }
+      }
+
+      function formatUptime(sec) {
+        const s = Math.max(0, Math.floor(Number(sec) || 0));
+        const d = Math.floor(s / 86400);
+        const h = Math.floor((s % 86400) / 3600);
+        const m = Math.floor((s % 3600) / 60);
+        const ru = readLang() === "ru";
+        if (d > 0) return ru ? d + " дн. " + h + " ч" : d + " күн " + h + " сағ";
+        if (h > 0) return ru ? h + " ч " + m + " мин" : h + " сағ " + m + " мин";
+        return ru ? m + " мин" : m + " мин";
+      }
+
+      function statCard(label, value) {
+        return (
+          '<div class="admin-stat" role="group"><div class="admin-stat-value">' +
+          escapeHtml(String(value)) +
+          '</div><div class="admin-stat-label">' +
+          escapeHtml(label) +
+          "</div></div>"
+        );
+      }
+
+      async function loadDash() {
+        const errEl = document.getElementById("loadErr");
+        const logErrEl = document.getElementById("logLoadErr");
+        errEl.hidden = true;
+        logErrEl.hidden = true;
+        const pack = STR[readLang()];
+        try {
+          const [stats, list, logPack] = await Promise.all([
+            api("/api/admin/stats"),
+            api("/api/admin/users"),
+            api("/api/admin/login-logs?limit=50").catch(() => ({ logs: [] })),
+          ]);
+          document.getElementById("statsHeadline").textContent = pack.statsHeadline(formatUptime(stats.serverUptimeSec));
+          const grid = document.getElementById("adminStatGrid");
+          grid.setAttribute("aria-label", pack.statsAria);
+          grid.innerHTML = [
+            statCard(pack.statTotal, stats.totalUsers ?? 0),
+            statCard(pack.statStudents, stats.regularUsers ?? 0),
+            statCard(pack.statTeachers, stats.teachers ?? 0),
+            statCard(pack.statAdmins, stats.admins ?? 0),
+            statCard(pack.statNew7, stats.registrationsLast7Days ?? 0),
+            statCard(pack.statNew30, stats.registrationsLast30Days ?? 0),
+            statCard(pack.statLogins7, stats.loginsLast7Days ?? 0),
+            statCard(pack.statPromoTotal, stats.promoCodesCount ?? 0),
+            statCard(pack.statPromoActive, stats.promoCodesActive ?? 0),
+            statCard(pack.statPromoUses, stats.promoRedemptionsTotal ?? 0),
+          ].join("");
+          const subLine = document.getElementById("usersSubLine");
+          if (subLine) subLine.textContent = staffReadOnly ? pack.usersSubRead : pack.usersSub;
+          const usersTable = document.getElementById("tbody").closest("table");
+          const usersThAct = usersTable && usersTable.querySelector("thead th:last-child");
+          if (usersThAct) {
+            usersThAct.textContent = staffReadOnly ? pack.thReadOnly : pack.thActions;
+          }
+
+          const logTb = document.getElementById("logTbody");
+          logTb.innerHTML = (logPack.logs || [])
+            .map((row) => {
+              const t = row.at ? new Date(row.at).toLocaleString(localeTag()) : "—";
+              const roleLabel = roleLabelPack(pack, row.role);
+              const ua = row.userAgent || "—";
+              return (
+                "<tr><td>" +
+                escapeHtml(t) +
+                "</td><td>" +
+                escapeHtml(roleLabel) +
+                "</td><td>" +
+                escapeHtml(row.phoneMasked || "—") +
+                "</td><td>" +
+                escapeHtml(row.ip || "—") +
+                '</td><td class="ua-cell" title="' +
+                escapeAttr(ua) +
+                '">' +
+                escapeHtml(ua) +
+                "</td></tr>"
+              );
+            })
+            .join("");
+          const tb = document.getElementById("tbody");
+          tb.innerHTML = list.users
+            .map((u) => {
+              const d = u.createdAt ? new Date(u.createdAt).toLocaleString(localeTag()) : "—";
+              const rl = roleLabelPack(pack, u.role);
+              if (staffReadOnly) {
+                return (
+                  "<tr data-id=\"" +
+                  escapeHtml(u.id) +
+                  "\"><td>" +
+                  escapeHtml(u.phone) +
+                  "</td><td>" +
+                  escapeHtml(u.name || "") +
+                  "</td><td>" +
+                  escapeHtml(rl) +
+                  "</td><td>" +
+                  escapeHtml(d) +
+                  "</td><td>—</td></tr>"
+                );
+              }
+              return (
+                "<tr data-id=\"" +
+                escapeHtml(u.id) +
+                "\"><td>" +
+                escapeHtml(u.phone) +
+                "</td><td><input type=\"text\" class=\"inp-name\" value=\"" +
+                escapeAttr(u.name || "") +
+                "\" /></td><td><select class=\"sel-role\"><option value=\"user\"" +
+                (u.role === "user" ? " selected" : "") +
+                ">" +
+                escapeHtml(pack.roleUser) +
+                "</option><option value=\"teacher\"" +
+                (u.role === "teacher" ? " selected" : "") +
+                ">" +
+                escapeHtml(pack.roleTeacher) +
+                "</option><option value=\"admin\"" +
+                (u.role === "admin" ? " selected" : "") +
+                ">" +
+                escapeHtml(pack.roleAdmin) +
+                "</option></select></td><td>" +
+                escapeHtml(d) +
+                "</td><td class=\"actions\"><button type=\"button\" class=\"btn-save\">" +
+                escapeHtml(pack.btnSave) +
+                "</button> <button type=\"button\" class=\"danger btn-del\">" +
+                escapeHtml(pack.btnDelete) +
+                "</button></td></tr>"
+              );
+            })
+            .join("");
+        } catch (e) {
+          errEl.textContent = e.message || pack.errLoadUsers;
+          errEl.hidden = false;
+        }
+      }
+
+      async function loadPromos() {
+        const errEl = document.getElementById("promoLoadErr");
+        errEl.hidden = true;
+        const pack = STR[readLang()];
+        syncStaffUi();
+        try {
+          const { promos } = await api("/api/admin/promos");
+          const tb = document.getElementById("promoTbody");
+          const promoTable = tb.closest("table");
+          const promoThAct = promoTable && promoTable.querySelector("thead th:last-child");
+          if (promoThAct) promoThAct.style.display = staffReadOnly ? "none" : "";
+          tb.innerHTML = promos
+            .map((p) => {
+              const lim = p.maxUses == null ? "∞" : String(p.maxUses);
+              const activeStr = p.active ? pack.yes : pack.no;
+              const toggleLabel = p.active ? pack.toggleOff : pack.toggleOn;
+              if (staffReadOnly) {
+                return (
+                  "<tr data-promo-id=\"" +
+                  escapeHtml(p.id) +
+                  "\" data-active=\"" +
+                  (p.active ? "1" : "0") +
+                  "\"><td><strong>" +
+                  escapeHtml(p.code) +
+                  "</strong></td><td>" +
+                  escapeHtml(p.label || "") +
+                  "</td><td>" +
+                  p.uses +
+                  "</td><td>" +
+                  escapeHtml(lim) +
+                  "</td><td>" +
+                  escapeHtml(activeStr) +
+                  "</td></tr>"
+                );
+              }
+              return (
+                "<tr data-promo-id=\"" +
+                escapeHtml(p.id) +
+                "\" data-active=\"" +
+                (p.active ? "1" : "0") +
+                "\"><td><strong>" +
+                escapeHtml(p.code) +
+                "</strong></td><td>" +
+                escapeHtml(p.label || "") +
+                "</td><td>" +
+                p.uses +
+                "</td><td>" +
+                escapeHtml(lim) +
+                "</td><td>" +
+                escapeHtml(activeStr) +
+                "</td><td class=\"actions\"><button type=\"button\" class=\"ghost btn-promo-toggle\">" +
+                escapeHtml(toggleLabel) +
+                "</button> <button type=\"button\" class=\"danger btn-promo-del\">" +
+                escapeHtml(pack.btnDelete) +
+                "</button></td></tr>"
+              );
+            })
+            .join("");
+        } catch (e) {
+          errEl.textContent = e.message || pack.errLoadPromos;
+          errEl.hidden = false;
+        }
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function escapeAttr(s) {
+        return escapeHtml(s).replace(/"/g, "&quot;");
+      }
+
+      document.getElementById("tbody").addEventListener("click", async (e) => {
+        const tr = e.target.closest("tr[data-id]");
+        if (!tr) return;
+        const id = tr.getAttribute("data-id");
+        const pack = STR[readLang()];
+        if (e.target.classList.contains("btn-save")) {
+          const name = tr.querySelector(".inp-name")?.value ?? "";
+          const role = tr.querySelector(".sel-role")?.value ?? "user";
+          try {
+            await api("/api/admin/users/" + id, {
+              method: "PATCH",
+              body: JSON.stringify({ name, role }),
+            });
+            flashMsg(pack.flashSaved);
+            await loadDash();
+          } catch (err) {
+            alert(err.message || pack.errGeneric);
+          }
+        }
+        if (e.target.classList.contains("btn-del")) {
+          if (!confirm(pack.confirmDelUser(id))) return;
+          try {
+            await api("/api/admin/users/" + id, { method: "DELETE" });
+            flashMsg(pack.flashDeleted);
+            await loadDash();
+          } catch (err) {
+            alert(err.message || pack.errGeneric);
+          }
+        }
+      });
+
+      document.getElementById("btnLogin").addEventListener("click", async () => {
+        const err = document.getElementById("loginErr");
+        err.hidden = true;
+        const pack = STR[readLang()];
+        const phoneRaw = document.getElementById("phone").value.trim();
+        const phone = normalizeAdminPhone(phoneRaw);
+        const password = document.getElementById("password").value;
+        if (!phone) {
+          err.textContent = pack.phoneInvalid;
+          err.hidden = false;
+          return;
+        }
+        try {
+          const data = await api("/api/auth/login", {
+            method: "POST",
+            body: JSON.stringify({ phone, password }),
+          });
+          if (data.user.role !== "admin" && data.user.role !== "teacher") {
+            throw new Error(pack.needStaffRole);
+          }
+          staffReadOnly = data.user.role === "teacher";
+          localStorage.setItem(tokenKey, data.token);
+          syncStaffUi();
+          showDash();
+          await loadDash();
+          await loadPromos();
+        } catch (e) {
+          err.textContent = e.message || pack.loginErrGeneric;
+          err.hidden = false;
+        }
+      });
+
+      document.getElementById("btnLogout").addEventListener("click", () => {
+        localStorage.removeItem(tokenKey);
+        staffReadOnly = false;
+        syncStaffUi();
+        showLogin();
+      });
+
+      document.getElementById("btnRefresh").addEventListener("click", async () => {
+        await loadDash();
+        await loadPromos();
+      });
+
+      document.getElementById("btnPromoCreate").addEventListener("click", async () => {
+        const err = document.getElementById("promoErr");
+        const ok = document.getElementById("promoOk");
+        err.hidden = true;
+        ok.hidden = true;
+        const pack = STR[readLang()];
+        const code = document.getElementById("promoCode").value.trim();
+        const label = document.getElementById("promoLabel").value.trim();
+        const maxRaw = document.getElementById("promoMax").value.trim();
+        const expRaw = document.getElementById("promoExp").value.trim();
+        const body = {
+          code,
+          label: label || pack.promoDefaultLabel,
+          maxUses: maxRaw ? Number(maxRaw) : null,
+          expiresAt: expRaw || null,
+          active: true,
+        };
+        try {
+          await api("/api/admin/promos", { method: "POST", body: JSON.stringify(body) });
+          ok.textContent = pack.promoCreated;
+          ok.hidden = false;
+          document.getElementById("promoCode").value = "";
+          await loadPromos();
+        } catch (e) {
+          err.textContent = e.message || pack.errGeneric;
+          err.hidden = false;
+        }
+      });
+
+      document.getElementById("promoTbody").addEventListener("click", async (e) => {
+        const tr = e.target.closest("tr[data-promo-id]");
+        if (!tr) return;
+        const id = tr.getAttribute("data-promo-id");
+        const pack = STR[readLang()];
+        if (e.target.classList.contains("btn-promo-del")) {
+          if (!confirm(pack.confirmDelPromo())) return;
+          try {
+            await api("/api/admin/promos/" + id, { method: "DELETE" });
+            await loadPromos();
+          } catch (err) {
+            alert(err.message || pack.errGeneric);
+          }
+        }
+        if (e.target.classList.contains("btn-promo-toggle")) {
+          const cur = tr.getAttribute("data-active") === "1";
+          try {
+            await api("/api/admin/promos/" + id, { method: "PATCH", body: JSON.stringify({ active: !cur }) });
+            await loadPromos();
+          } catch (err) {
+            alert(err.message || pack.errGeneric);
+          }
+        }
+      });
+
+      (async () => {
+        const tok = localStorage.getItem(tokenKey);
+        if (!tok) return showLogin();
+        try {
+          const me = await api("/api/auth/me");
+          if (me.user.role !== "admin" && me.user.role !== "teacher") throw new Error("not staff");
+          staffReadOnly = me.user.role === "teacher";
+          syncStaffUi();
+          showDash();
+          await loadDash();
+          await loadPromos();
+        } catch {
+          localStorage.removeItem(tokenKey);
+          showLogin();
+        }
+      })();
+    </script>
+  </body>
+</html>

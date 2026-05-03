@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GeoOnline: байланыс." />
+    <title>GeoOnline: Байланыс</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/icon.jpg" sizes="64x64" />
+    <link rel="apple-touch-icon" href="assets/icon.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Контентке өту</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html#top" aria-label="GeoOnline басты бет" data-i18n-attr="aria-label:brandAria">
+          <img class="brand-logo" src="assets/logo.png" alt="GeoOnline" />
+          <span class="brand-text">GeoOnline</span>
+        </a>
+
+        <nav class="nav" aria-label="Негізгі мәзір" data-i18n-attr="aria-label:navAria">
+          <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+            <span class="sr-only" data-i18n="menu">Мәзір</span>
+          </button>
+
+          <ul class="nav-menu" id="navMenu">
+            <li><a class="nav-link" href="index.html#courses" data-i18n="nav.courses">Курстар</a></li>
+            <li><a class="nav-link" href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a></li>
+            <li><a class="nav-link" href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a></li>
+            <li><a class="nav-link" href="index.html#mobile" data-i18n="nav.mobile">Мобилді қосымша</a></li>
+            <li><a class="nav-link" href="materials.html" data-i18n="nav.materials">Материалдар</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" aria-label="Хабарламалар" data-i18n-attr="aria-label:notifsAria">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 1 0-14 0v5l-2 2v1h18v-1l-2-2Z"
+              />
+            </svg>
+          </button>
+
+          <div class="a11y-dd" data-i18n-attr="aria-label:a11yDdAria">
+            <button class="icon-btn" id="a11yToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="a11yMenu" data-i18n-attr="aria-label:a11yBtnAria">
+              <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"
+                />
+              </svg>
+            </button>
+            <div class="a11y-menu" id="a11yMenu" role="menu" data-i18n-attr="aria-label:a11yMenuAria">
+              <div class="a11y-menu-head" data-i18n="a11yPanel.menuTitle">Көрініс және қолжетімділік</div>
+              <button class="a11y-theme-btn" type="button" id="themeToggle" data-i18n-attr="aria-label:themeAria">
+                <span class="a11y-theme-ic" aria-hidden="true">
+                  <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M21.64 13a1 1 0 0 0-1.05-.14A8.05 8.05 0 0 1 17.22 13.5 8.15 8.15 0 0 1 8.5 4.78a8.59 8.59 0 0 1 .56-3.3 1 1 0 0 0-1.2-1.3A10.14 10.14 0 0 0 2 10.26 10.15 10.15 0 0 0 12.27 22a10.28 10.28 0 0 0 9.28-7.37 1 1 0 0 0 .09-.63Z"
+                    />
+                  </svg>
+                </span>
+                <span data-i18n="a11yPanel.themeAction">Ауыстыру</span>
+              </button>
+              <div class="a11y-menu-section">
+                <div class="a11y-label" data-i18n="a11yPanel.font">Мәтін өлшемі</div>
+                <div class="a11y-font-row" role="group" data-i18n-attr="aria-label:a11yFontGroupAria">
+                  <button class="a11y-pill" type="button" id="a11yFontDown" data-i18n-attr="aria-label:a11yFontDecAria">A−</button>
+                  <button class="a11y-pill" type="button" id="a11yFontReset" data-i18n-attr="aria-label:a11yFontResetAria">A</button>
+                  <button class="a11y-pill" type="button" id="a11yFontUp" data-i18n-attr="aria-label:a11yFontIncAria">A+</button>
+                </div>
+              </div>
+              <div class="a11y-toggle-row" role="group" data-i18n-attr="aria-label:a11yToggleGroupAria">
+                <button class="a11y-chip" type="button" id="a11yContrastBtn" aria-pressed="false">
+                  <span data-i18n="a11yPanel.contrastShort">Контраст</span>
+                </button>
+                <button class="a11y-chip" type="button" id="a11yCvdBtn" aria-pressed="false">
+                  <span data-i18n="a11yPanel.cvdShort">Түстер</span>
+                </button>
+              </div>
+              <button class="a11y-item a11y-item--muted" type="button" role="menuitem" id="a11yResetBtn">
+                <span data-i18n="a11yPanel.reset">Барлығын қалпына келтіру</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lang-dd" data-i18n-attr="aria-label:langAria">
+            <button class="lang-btn" id="langToggle" type="button" aria-haspopup="menu" aria-expanded="false">
+              <span class="lang-btn-flag" id="langFlag" aria-hidden="true"></span>
+              <span class="lang-btn-text" id="langText">Қазақша</span>
+              <span class="lang-btn-caret" aria-hidden="true"></span>
+            </button>
+            <div class="lang-menu" id="langMenu" role="menu" aria-label="Тіл" data-i18n-attr="aria-label:langMenuAria">
+              <button class="lang-item" type="button" role="menuitem" data-lang="kk">
+                <span class="lang-item-flag" data-flag="kk" aria-hidden="true"></span>
+                <span class="lang-item-label">Қазақша</span>
+              </button>
+              <button class="lang-item" type="button" role="menuitem" data-lang="ru">
+                <span class="lang-item-flag" data-flag="ru" aria-hidden="true"></span>
+                <span class="lang-item-label">Орысша</span>
+              </button>
+            </div>
+          </div>
+
+          <a class="btn btn-ghost" href="login.html" data-i18n="header.login">Кіру</a>
+          <a class="btn btn-primary" href="register.html" data-i18n="header.register">Тіркелу</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section section-soft page-head">
+        <div class="container">
+          <div class="section-head page-head-inner">
+            <h1 class="page-title" data-i18n="pages.contacts.title">Байланыс</h1>
+            <p class="section-subtitle" data-i18n="pages.contacts.subtitle">Сұрағыңыз бар ма? Жазыңыз, көмектесеміз.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight-top">
+        <div class="container">
+          <div class="grid-2">
+            <div class="card card--prose">
+              <div class="card-head">
+                <div class="card-title" data-i18n="pages.contacts.block1.title">Байланыс арналары</div>
+                <div class="card-note" data-i18n="pages.contacts.block1.note">Жылдам жауап</div>
+              </div>
+              <ul class="list">
+                <li data-i18n="pages.contacts.block1.li1">WhatsApp: +7 (777) 777-77-77</li>
+                <li data-i18n="pages.contacts.block1.li2">Telegram: @geoonline_support</li>
+                <li data-i18n="pages.contacts.block1.li3">Email: support@geoonline.kz</li>
+              </ul>
+            </div>
+
+            <div class="card card--form" id="support">
+              <div class="card-head">
+                <div class="card-title" data-i18n="pages.contacts.form.title">Қолдау қызметі</div>
+                <div class="card-note" data-i18n="pages.contacts.form.note">Өтініш қалдырыңыз</div>
+              </div>
+
+              <form class="form form--padded" id="supportForm">
+                <label class="field">
+                  <span class="field-label" data-i18n="pages.contacts.form.name">Аты-жөніңіз</span>
+                  <input class="input" name="name" type="text" autocomplete="name" required />
+                </label>
+
+                <label class="field">
+                  <span class="field-label" data-i18n="pages.contacts.form.phone">Телефон</span>
+                  <input class="input" name="phone" type="tel" autocomplete="tel" />
+                </label>
+
+                <label class="field">
+                  <span class="field-label" data-i18n="pages.contacts.form.msg">Хабарлама</span>
+                  <textarea class="input" name="message" rows="4" required></textarea>
+                </label>
+
+                <div class="form-actions">
+                  <button class="btn btn-primary" type="submit" data-i18n="pages.contacts.form.send">Жіберу</button>
+                  <a class="btn btn-ghost" href="faq.html" data-i18n="pages.contacts.form.toFaq">FAQ қарау</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text footer-title">GeoOnline</div>
+          <p class="footer-desc" data-i18n="footer.desc">
+            ҰБТ-ға дайындықтың заманауи және ең тиімді тәсілі. Бізбен бірге болашағыңа қадам жаса.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.platform">Платформа</div>
+          <a href="index.html#courses" data-i18n="nav.courses">Курстар</a>
+          <a href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a>
+          <a href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a>
+          <a href="materials.html" data-i18n="nav.materials">Материалдар</a>
+          <a href="training.html#simulator" data-i18n="footer.rating">Рейтинг</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.company">Компания</div>
+          <a href="about.html" data-i18n="footer.about">Біз туралы</a>
+          <a href="contacts.html" data-i18n="footer.contacts">Байланыс</a>
+          <a href="news.html" data-i18n="footer.news">Жаңалықтар</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.help">Көмек</div>
+          <a href="faq.html" data-i18n="footer.faq">Сұрақ-жауап (FAQ)</a>
+          <a href="contacts.html#support" data-i18n="footer.support">Қолдау көрсету</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Құпиялылық саясаты</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span data-i18n="footer.copyright">© GeoOnline 2026. Барлық құқықтар қорғалған.</span>
+        <a class="back-to-top" href="#top" data-i18n="footer.top">↑ Жоғары</a>
+      </div>
+    </footer>
+
+    <script src="assets/geo-api-config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+

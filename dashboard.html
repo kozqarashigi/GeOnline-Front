@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GeoOnline: жеке кабинет." />
+    <title>GeoOnline: Кабинет</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/icon.jpg" sizes="64x64" />
+    <link rel="apple-touch-icon" href="assets/icon.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Контентке өту</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html#top" aria-label="GeoOnline басты бет" data-i18n-attr="aria-label:brandAria">
+          <img class="brand-logo" src="assets/logo.png" alt="GeoOnline" />
+          <span class="brand-text">GeoOnline</span>
+        </a>
+
+        <nav class="nav" aria-label="Негізгі мәзір" data-i18n-attr="aria-label:navAria">
+          <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+            <span class="sr-only" data-i18n="menu">Мәзір</span>
+          </button>
+
+          <ul class="nav-menu" id="navMenu">
+            <li><a class="nav-link" href="index.html#courses" data-i18n="nav.courses">Курстар</a></li>
+            <li><a class="nav-link" href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a></li>
+            <li><a class="nav-link" href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a></li>
+            <li><a class="nav-link" href="index.html#mobile" data-i18n="nav.mobile">Мобилді қосымша</a></li>
+            <li><a class="nav-link" href="materials.html" data-i18n="nav.materials">Материалдар</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" aria-label="Хабарламалар" data-i18n-attr="aria-label:notifsAria">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22Zm7-6V11a7 7 0 1 0-14 0v5l-2 2v1h18v-1l-2-2Z"
+              />
+            </svg>
+          </button>
+
+          <div class="a11y-dd" data-i18n-attr="aria-label:a11yDdAria">
+            <button class="icon-btn" id="a11yToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="a11yMenu" data-i18n-attr="aria-label:a11yBtnAria">
+              <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"
+                />
+              </svg>
+            </button>
+            <div class="a11y-menu" id="a11yMenu" role="menu" data-i18n-attr="aria-label:a11yMenuAria">
+              <div class="a11y-menu-head" data-i18n="a11yPanel.menuTitle">Көрініс және қолжетімділік</div>
+              <button class="a11y-theme-btn" type="button" id="themeToggle" data-i18n-attr="aria-label:themeAria">
+                <span class="a11y-theme-ic" aria-hidden="true">
+                  <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M21.64 13a1 1 0 0 0-1.05-.14A8.05 8.05 0 0 1 17.22 13.5 8.15 8.15 0 0 1 8.5 4.78a8.59 8.59 0 0 1 .56-3.3 1 1 0 0 0-1.2-1.3A10.14 10.14 0 0 0 2 10.26 10.15 10.15 0 0 0 12.27 22a10.28 10.28 0 0 0 9.28-7.37 1 1 0 0 0 .09-.63Z"
+                    />
+                  </svg>
+                </span>
+                <span data-i18n="a11yPanel.themeAction">Ауыстыру</span>
+              </button>
+              <div class="a11y-menu-section">
+                <div class="a11y-label" data-i18n="a11yPanel.font">Мәтін өлшемі</div>
+                <div class="a11y-font-row" role="group" data-i18n-attr="aria-label:a11yFontGroupAria">
+                  <button class="a11y-pill" type="button" id="a11yFontDown" data-i18n-attr="aria-label:a11yFontDecAria">A−</button>
+                  <button class="a11y-pill" type="button" id="a11yFontReset" data-i18n-attr="aria-label:a11yFontResetAria">A</button>
+                  <button class="a11y-pill" type="button" id="a11yFontUp" data-i18n-attr="aria-label:a11yFontIncAria">A+</button>
+                </div>
+              </div>
+              <div class="a11y-toggle-row" role="group" data-i18n-attr="aria-label:a11yToggleGroupAria">
+                <button class="a11y-chip" type="button" id="a11yContrastBtn" aria-pressed="false">
+                  <span data-i18n="a11yPanel.contrastShort">Контраст</span>
+                </button>
+                <button class="a11y-chip" type="button" id="a11yCvdBtn" aria-pressed="false">
+                  <span data-i18n="a11yPanel.cvdShort">Түстер</span>
+                </button>
+              </div>
+              <button class="a11y-item a11y-item--muted" type="button" role="menuitem" id="a11yResetBtn">
+                <span data-i18n="a11yPanel.reset">Барлығын қалпына келтіру</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lang-dd" data-i18n-attr="aria-label:langAria">
+            <button class="lang-btn" id="langToggle" type="button" aria-haspopup="menu" aria-expanded="false">
+              <span class="lang-btn-flag" id="langFlag" aria-hidden="true"></span>
+              <span class="lang-btn-text" id="langText">Қазақша</span>
+              <span class="lang-btn-caret" aria-hidden="true"></span>
+            </button>
+            <div class="lang-menu" id="langMenu" role="menu" aria-label="Тіл" data-i18n-attr="aria-label:langMenuAria">
+              <button class="lang-item" type="button" role="menuitem" data-lang="kk">
+                <span class="lang-item-flag" data-flag="kk" aria-hidden="true"></span>
+                <span class="lang-item-label">Қазақша</span>
+              </button>
+              <button class="lang-item" type="button" role="menuitem" data-lang="ru">
+                <span class="lang-item-flag" data-flag="ru" aria-hidden="true"></span>
+                <span class="lang-item-label">Орысша</span>
+              </button>
+            </div>
+          </div>
+
+          <a class="btn btn-ghost" href="login.html" data-i18n="header.login">Кіру</a>
+          <a class="btn btn-primary" href="register.html" data-i18n="header.register">Тіркелу</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section section-soft page-head section-tight-top">
+        <div class="container">
+          <div class="dash-hero card">
+            <div class="dash-hero-top">
+              <div class="dash-hero-text">
+                <p class="dash-greeting"><span data-i18n="pages.dash.greeting">Сәлеметсіз бе,</span></p>
+                <h1 class="dash-hero-name" id="dashHeroName">—</h1>
+                <p class="dash-hero-meta muted">
+                  <span data-i18n="pages.dash.memberSince">Тіркелген:</span>
+                  <strong id="dashSince">—</strong>
+                </p>
+                <p class="dash-hero-hint muted dash-student-only" data-i18n="pages.dash.welcomeHint">
+                  Дайындықты төмендегі сілтемелер арқылы жалғастырыңыз.
+                </p>
+                <p class="dash-hero-hint muted dash-admin-only" id="dashAdminHeroHint" hidden data-i18n="pages.dash.welcomeHintAdmin">
+                  Пайдаланушылар мен промокодтарды әкімші панелінен басқарыңыз.
+                </p>
+                <p class="dash-hero-hint muted dash-teacher-only" id="dashTeacherHeroHint" hidden data-i18n="pages.dash.welcomeHintTeacher">
+                  Оқушылар тізімі мен прогресті мұғалім панелінен қараңыз; жоғарыда топ-10 кабинетте көрсетіледі.
+                </p>
+              </div>
+              <div class="dash-hero-aside">
+                <div class="dash-hero-metrics dash-student-only" aria-live="polite">
+                  <div class="dash-metric">
+                    <span class="dash-metric-value" id="dashStreakHero">0</span>
+                    <span class="dash-metric-label" data-i18n="pages.dash.streakTitle">Серия</span>
+                    <span class="dash-metric-sub muted" data-i18n="pages.dash.streakUnit">күн</span>
+                  </div>
+                  <div class="dash-metric">
+                    <span class="dash-metric-value" id="dashProgressHero">0%</span>
+                    <span class="dash-metric-label" data-i18n="pages.dash.overallProgress">Жалпы прогресс</span>
+                  </div>
+                </div>
+                <span class="dash-role-badge" id="dashRoleBadge" hidden>—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight-top">
+        <div class="container content-stack">
+          <div class="card card--prose" id="dashAdminPanel" hidden>
+            <div class="dash-admin-inner">
+              <div class="dash-admin-copy">
+                <div class="card-title" data-i18n="pages.dash.adminTitle">Әкімші аймағы</div>
+                <p class="card-text muted" data-i18n="pages.dash.adminSubtitle">Пайдаланушылар мен баптауларды басқару.</p>
+              </div>
+              <a
+                class="btn btn-primary"
+                id="dashAdminOpen"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="pages.dash.adminOpen"
+                >Әкімші панелін ашу</a
+              >
+            </div>
+          </div>
+
+          <div class="card card--prose" id="dashTeacherPanel" hidden>
+            <div class="dash-admin-inner">
+              <div class="dash-admin-copy">
+                <div class="card-title" data-i18n="pages.dash.teacherTitle">Мұғалім аймағы</div>
+                <p class="card-text muted" data-i18n="pages.dash.teacherSubtitle">
+                  Оқушылар тізімі мен прогресті қарау (өзгерту және жою — тек әкімші).
+                </p>
+              </div>
+              <a
+                class="btn btn-primary"
+                id="dashTeacherOpen"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="pages.dash.teacherOpen"
+                >Мұғалім панелін ашу</a
+              >
+            </div>
+            <div class="dash-leaderboard" id="dashLeaderboard" hidden aria-live="polite">
+              <h3 class="dash-leaderboard-title" data-i18n="pages.dash.leaderboardTitle">Оқушылар: топ-10 (прогресс)</h3>
+              <ol class="dash-leaderboard-list" id="dashLeaderboardList"></ol>
+            </div>
+          </div>
+
+          <div class="dash-stat-grid dash-student-only" id="dashStatGrid">
+            <div class="card dash-stat">
+              <div class="dash-stat-value" id="dashStatStreak">0</div>
+              <div class="dash-stat-label" data-i18n="pages.dash.streakTitle">Күнделікті серия</div>
+              <p class="dash-stat-note muted" data-i18n="pages.dash.streakHint">Кабинетке кірген сайын серия ұзарады.</p>
+            </div>
+            <div class="card dash-stat">
+              <div class="dash-stat-value" id="dashStatProgress">0%</div>
+              <div class="dash-stat-label" data-i18n="pages.dash.overallProgress">Тақырыптар прогресі</div>
+              <p class="dash-stat-note muted" data-i18n="pages.dash.progressHint">Чеклисттер бойынша орташа.</p>
+            </div>
+            <div class="card dash-stat">
+              <div class="dash-stat-value">ҰБТ</div>
+              <div class="dash-stat-label" data-i18n="nav.trial">Сынақ тест</div>
+              <a class="btn btn-ghost btn-sm dash-stat-link" href="platform.html#trial" data-i18n="pages.dash.toTrial">Сынақ тест</a>
+            </div>
+          </div>
+
+          <div class="dash-study-stack dash-student-only" id="dashStudyBoard">
+            <section class="card card--prose dash-study-path-card" aria-labelledby="dashLearningPathTitle">
+              <div class="card-head dash-study-head">
+                <div>
+                  <div class="card-title" data-i18n="pages.dash.studyTitle">Оқу жоспары</div>
+                  <p class="card-text muted" style="margin: 0" data-i18n="pages.dash.studyLead">
+                    Тақырыптар кезекпен төменде; апталық кесте мен промокод — келесі бөлімдерде.
+                  </p>
+                </div>
+              </div>
+              <div class="dash-panel dash-panel--learning">
+                <div class="dash-panel-head">
+                  <div class="dash-panel-head-copy">
+                    <h2 class="dash-panel-title" id="dashLearningPathTitle" data-i18n="pages.dash.learningPathTitle">Менің оқу жолым</h2>
+                    <p class="dash-panel-lead muted" data-i18n="pages.dash.pathHint">Курс және прогресс</p>
+                  </div>
+                  <a class="btn btn-ghost btn-sm dash-panel-cta" href="index.html#courses" data-i18n="pages.dash.courseCatalog">Курстар</a>
+                </div>
+                <div class="dash-topic-list" id="dashTopicList"></div>
+              </div>
+            </section>
+
+            <section class="card card--prose dash-study-section-card" aria-labelledby="dashPlanSectionTitle">
+              <h2 class="dash-panel-title" id="dashPlanSectionTitle" data-i18n="pages.dash.planTitle">Апталық кесте</h2>
+              <p class="dash-plan-hint muted" data-i18n="pages.dash.planHint">Әр аптаға сабақ уақытын жоспарлаңыз.</p>
+              <div class="dash-plan-rows" id="dashPlanRows"></div>
+              <button class="btn btn-ghost btn-sm dash-plan-add" type="button" id="dashPlanAdd" data-i18n="pages.dash.planAdd">
+                Жоспарға қосу
+              </button>
+            </section>
+
+            <section class="card card--prose dash-study-section-card dash-panel--promo" aria-labelledby="dashPromoSectionTitle">
+              <h2 class="dash-panel-title" id="dashPromoSectionTitle" data-i18n="pages.dash.promoTitle">Промокод</h2>
+              <p class="muted dash-promo-intro" data-i18n="pages.dash.promoHint">Әкімші берген кодты енгізіңіз.</p>
+              <form class="dash-promo-form" id="dashPromoForm">
+                <input class="dash-promo-input" type="text" name="code" autocomplete="off" placeholder="GEONLINE2021" data-i18n-attr="placeholder:pages.dash.promoPlaceholder" />
+                <button class="btn btn-primary btn-sm" type="submit" data-i18n="pages.dash.promoApply">Қолдану</button>
+              </form>
+              <div class="dash-promo-list" id="dashPromoList"></div>
+            </section>
+          </div>
+
+          <div class="dash-detail-grid">
+            <div class="card card--prose">
+              <div class="card-head">
+                <div class="card-title" data-i18n="pages.dash.profileTitle">Профиль</div>
+              </div>
+              <form class="dash-profile-form" id="dashProfileForm" novalidate>
+                <label class="field dash-profile-field">
+                  <span class="field-label" data-i18n="pages.dash.profileNameEdit">Аты-жөні</span>
+                  <input class="input" id="dashProfileName" name="name" type="text" autocomplete="name" maxlength="120" />
+                </label>
+                <label class="field dash-profile-field">
+                  <span class="field-label" data-i18n="pages.dash.profileEmailEdit">Email (міндетті емес)</span>
+                  <input class="input" id="dashProfileEmail" name="email" type="email" autocomplete="email" maxlength="120" placeholder="" data-i18n-attr="placeholder:pages.dash.profileEmailPh" />
+                </label>
+                <p class="muted dash-profile-email-hint" data-i18n="pages.dash.profileEmailExplain">
+                  Пошта тек профильге сақталады; хат жіберу үшін серверде SMTP қосу керек.
+                </p>
+                <p class="card-text dash-profile-phone-row">
+                  <span data-i18n="pages.dash.phoneLabel">Телефон:</span>
+                  <strong id="dashPhone">—</strong>
+                </p>
+                <p class="muted dash-profile-note" data-i18n="pages.dash.profilePhoneNote">Телефон тіркеуде бекітілген; өзгерту үшін қолдауға жазыңыз.</p>
+                <button type="submit" class="btn btn-primary btn-sm dash-profile-save" data-i18n="pages.dash.profileSave">Сақтау</button>
+              </form>
+              <p class="card-text dash-profile-role-line" id="dashRoleLine" hidden>
+                <span data-i18n="pages.dash.roleLabel">Рөл:</span> <strong id="dashRole">—</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast toast--global" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text footer-title">GeoOnline</div>
+          <p class="footer-desc" data-i18n="footer.desc">
+            ҰБТ-ға дайындықтың заманауи және ең тиімді тәсілі. Бізбен бірге болашағыңа қадам жаса.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.platform">Платформа</div>
+          <a href="index.html#courses" data-i18n="nav.courses">Курстар</a>
+          <a href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a>
+          <a href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a>
+          <a href="materials.html" data-i18n="nav.materials">Материалдар</a>
+          <a href="training.html#simulator" data-i18n="footer.rating">Рейтинг</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.company">Компания</div>
+          <a href="about.html" data-i18n="footer.about">Біз туралы</a>
+          <a href="contacts.html" data-i18n="footer.contacts">Байланыс</a>
+          <a href="news.html" data-i18n="footer.news">Жаңалықтар</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.help">Көмек</div>
+          <a href="faq.html" data-i18n="footer.faq">Сұрақ-жауап (FAQ)</a>
+          <a href="contacts.html#support" data-i18n="footer.support">Қолдау көрсету</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Құпиялылық саясаты</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span data-i18n="footer.copyright">© GeoOnline 2026. Барлық құқықтар қорғалған.</span>
+        <a class="back-to-top" href="#top" data-i18n="footer.top">↑ Жоғары</a>
+      </div>
+    </footer>
+
+    <script src="assets/geo-api-config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

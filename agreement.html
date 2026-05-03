@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GeoOnline: пайдаланушы келісімі." />
+    <title>GeoOnline: Пайдаланушы келісімі</title>
+
+    <link rel="icon" type="image/jpeg" href="assets/icon.jpg" sizes="64x64" />
+    <link rel="apple-touch-icon" href="assets/icon.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        if (new URLSearchParams(location.search).get("embed") === "1") {
+          document.documentElement.classList.add("legal-embed");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Контентке өту</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html#top" aria-label="GeoOnline басты бет" data-i18n-attr="aria-label:brandAria">
+          <img class="brand-logo" src="assets/logo.png" alt="GeoOnline" />
+          <span class="brand-text">GeoOnline</span>
+        </a>
+
+        <nav class="nav" aria-label="Негізгі мәзір" data-i18n-attr="aria-label:navAria">
+          <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+            <span class="sr-only" data-i18n="menu">Мәзір</span>
+          </button>
+
+          <ul class="nav-menu" id="navMenu">
+            <li><a class="nav-link" href="index.html#courses" data-i18n="nav.courses">Курстар</a></li>
+            <li><a class="nav-link" href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a></li>
+            <li><a class="nav-link" href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a></li>
+            <li><a class="nav-link" href="index.html#mobile" data-i18n="nav.mobile">Мобилді қосымша</a></li>
+            <li><a class="nav-link" href="materials.html" data-i18n="nav.materials">Материалдар</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-ghost" href="login.html" data-i18n="header.login">Кіру</a>
+          <a class="btn btn-primary" href="register.html" data-i18n="header.register">Тіркелу</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section section-soft page-head">
+        <div class="container">
+          <div class="section-head page-head-inner">
+            <h1 class="page-title" data-i18n="pages.agreement.title">Пайдаланушы келісімі</h1>
+            <p class="section-subtitle" data-i18n="pages.agreement.subtitle">
+              Платформаны пайдалану ережелері мен жауапкершіліктердің қысқаша сипаттамасы.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight-top">
+        <div class="container content-stack content-stack--legal">
+          <div class="card card--prose">
+            <div class="card-head">
+              <div class="card-title" data-i18n="pages.agreement.p1t">1) Келісімнің мәні</div>
+              <div class="card-note" data-i18n="pages.agreement.p1n">Жалпы</div>
+            </div>
+            <p class="card-text" data-i18n="pages.agreement.p1d">
+              Тіркелу немесе тестті бастау арқылы сіз осы келісімнің талаптарымен танысқан және олармен келісетініңізді растайсыз. Нақты құқықтық мәтінді заң кеңесшісімен келісу ұсынылады.
+            </p>
+          </div>
+
+          <div class="card card--prose">
+            <div class="card-head">
+              <div class="card-title" data-i18n="pages.agreement.p2t">2) Аккаунт және деректер</div>
+              <div class="card-note" data-i18n="pages.agreement.p2n">Қауіпсіздік</div>
+            </div>
+            <p class="card-text" data-i18n="pages.agreement.p2d">
+              Телефон нөмірі және профильдегі деректер серверде сақталады. Парольді басқаға жарияламаңыз; күдік болған жағдайда парольді өзгертіңіз немесе қолдауға жазыңыз.
+            </p>
+          </div>
+
+          <div class="card card--prose">
+            <div class="card-head">
+              <div class="card-title" data-i18n="pages.agreement.p3t">3) Контент пен материалдар</div>
+              <div class="card-note" data-i18n="pages.agreement.p3n">Пайдалану</div>
+            </div>
+            <p class="card-text" data-i18n="pages.agreement.p3d">
+              Курстар мен тренажер материалдары авторлық құқыққа бағынады. Материалдарды қайта сату немесе жария таратуға болмайды; жеке оқу мақсатында пайдалануға рұқсат етіледі.
+            </p>
+          </div>
+
+          <div class="card card--prose">
+            <div class="card-head">
+              <div class="card-title" data-i18n="pages.agreement.p4t">4) Құпиялылық</div>
+              <div class="card-note" data-i18n="pages.agreement.p4n">Толығырақ</div>
+            </div>
+            <p class="card-text">
+              <span data-i18n="pages.agreement.p4d">Деректерді өңдеу тәртібі құпиялылық саясатында сипатталған.</span>
+              <a href="privacy.html" data-i18n="pages.agreement.privacyLink">Құпиялылық саясаты</a>
+            </p>
+          </div>
+
+          <div class="card card--prose">
+            <div class="card-head">
+              <div class="card-title" data-i18n="pages.agreement.p5t">5) Байланыс</div>
+              <div class="card-note" data-i18n="pages.agreement.p5n">Сұрақ болса</div>
+            </div>
+            <p class="card-text">
+              <span data-i18n="pages.agreement.p5d">Келісім бойынша сұрақтарыңыз болса, Байланыс беті арқылы жазыңыз.</span>
+              <a href="contacts.html" data-i18n="pages.agreement.contactLink">Байланыс</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand-text footer-title">GeoOnline</div>
+          <p class="footer-desc" data-i18n="footer.desc">
+            ҰБТ-ға дайындықтың заманауи және ең тиімді тәсілі. Бізбен бірге болашағыңа қадам жаса.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.platform">Платформа</div>
+          <a href="index.html#courses" data-i18n="nav.courses">Курстар</a>
+          <a href="training.html#simulator" data-i18n="nav.simulator">Тренажер</a>
+          <a href="platform.html#trial" data-i18n="nav.trial">Пробный тест</a>
+          <a href="materials.html" data-i18n="nav.materials">Материалдар</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.company">Компания</div>
+          <a href="about.html" data-i18n="footer.about">Біз туралы</a>
+          <a href="contacts.html" data-i18n="footer.contacts">Байланыс</a>
+          <a href="news.html" data-i18n="footer.news">Жаңалықтар</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title" data-i18n="footer.help">Көмек</div>
+          <a href="faq.html" data-i18n="footer.faq">Сұрақ-жауап (FAQ)</a>
+          <a href="privacy.html" data-i18n="footer.privacy">Құпиялылық саясаты</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span data-i18n="footer.copyright">© GeoOnline 2026. Барлық құқықтар қорғалған.</span>
+        <a class="back-to-top" href="#top" data-i18n="footer.top">↑ Жоғары</a>
+      </div>
+    </footer>
+
+    <script src="assets/geo-api-config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
